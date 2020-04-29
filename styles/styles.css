@@ -1,0 +1,32 @@
+.five-day-forcast{
+    background-color: rgb(171, 243, 243);
+    width: 139px;
+    height: 157px;
+    /* margin: 0% 5% */
+}
+#current-forecast{
+    background-color: rgb(148, 172, 177);
+    width: 812px;
+    height: 257px;
+}
+#city-history{
+    background-color: rgb(18, 144, 167);
+    width: 297px;
+    height: 371px;
+}
+
+h1{
+    widows: 100%;
+    background-color: black;
+    color: #FFF;
+}
+#forecast{
+    float: right;
+}
+button{
+    height: 20px;
+}
+.history-list{
+    list-style: none;
+    border-bottom: 2px solid gray;
+}
