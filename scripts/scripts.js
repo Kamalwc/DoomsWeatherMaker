@@ -1,54 +1,88 @@
 jQuery(document).ready(function () {
-   // alert("success");
-   // var userInput = $("#input");
-   // var history = [];
-   // var storedHistory; // holds history in local storage 
+   var history = [];
 
+   init();
 
-   // if (!localStorage.getItem('history')) {
-   //    storedHistory = localStorage.setItem('history', JSON.stringify(history));
-   // }
+   function init(){
+      var storedHistory = localStorage.getItem('history');
+
+      if (!localStorage.getItem('history')) {
+         history = storedHistory;
+      }
+
+      renderHistory();
+   }
+    
+
+    // render history of cities searched
+    function renderHistory() {
+       $('#city-history').html("");
+
+       for (let i = 0; i < history.length; i++) {
+         var historyLi = $('<li>' + history[i] + '</li>');
+         historyLi.addClass('history-list');
+         $('#city-history').append(historyLi);
+      }
+      //  var storedHistory = localStorage.getItem('history'); 
+      //  console.log("length is :" + storedHistory.length);
+   }
+
+   function storeHistory(){
+      localStorage.setItem("history", JSON.stringify(history))
+   }
 
    $('button').on('click', function () {
-      // var inputTxt = $('#input');
-
-      // if ( inputTxt.val() === "" ) {
-      //    $('#searchDiv').prepend('<p> you must enter a valid state</p>');
-      // }
-
-      // history.push(inputTxt.val());
-      // localStorage.setItem('history', JSON.stringify(history));
-      var lat = '149.4';
-      var lon = '64.2';
-      var key = '';
-      var queryUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat={' + lat +'}&lon={' 
-      + lon + '}&appid={' + key + '}';
       
-      //ajax call 
+      var city = $('#input').val();
+      
+      if (city === "" ) {
+         $('#searchDiv').prepend('<p> you must enter a valid state</p>');
+      }
+      
+      history.push(city);
+
+      storeHistory();
+      renderHistory();
+      
+     let url1 = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=be96177b800465cf4bbda5bf5b09acca';
+
+      let lon, lat;
+
+      //ajax call
       $.ajax({
-         url: queryUrl,
-            method: 'GET'
-      }).then(function (resp) {
+         url: url1,
+         method: 'GET'
+      }).then(function (response) { 
+         lat = response.coord.lat;
+         lon = response.coord.lon;
 
-         console.log(resp);
-         
-         // $('#current-forecast').append($('<h3>'+ city + currentDate + '</h3>'));
-         // $('#current-forecast').append($('<p>'+ 'Temperature:' + temperature + '</p>'));
-         // $('#current-forecast').append($('<p>'+ 'Humidity:' + humiditity + '</p>'));
-         // $('#current-forecast').append($('<p>'+ 'Wind Speed:' + windSpeed + '</p>'));
-         // $('#current-forecast').append($('<p>'+ 'UV Index:' + UvIndex + '</p>'));
-         })
-   })
-
-   // // render history of cities searched
-   // function renderHistory() {
-   //    for (let i = 0; i < storedHistory.length; i++) {
-   //       var historyLi = $('<li>' + storedHistory[i] + '</li>');
-   //       $('#city-history').append(historyLi);
-   //    }
-   // }
-
-   // renderHistory();
-
-
+         let url2 = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&appid=be96177b800465cf4bbda5bf5b09acca';
+            $.ajax({
+               url: url2,
+               method: 'GET'
+            }).then(function (response) {
+               console.log("response " + response);
+               
+               $('#city').html(city + ' (' + moment().format('MM/DD/YYYY') + ')');
+               $('#temp').html("Temperature: " + response.current.temp + " F");
+               $('#humidity').html("Humidity: " + response.current.humidity + "%");
+               $('#wind-speed').html("Wind Speed: " + response.current.wind_speed + " MPH");
+               $('#uv-index').html("UV Index: " + '<div class="uvnum">' + response.current.uvi + '</div>');
+               let fiveDay = $('.five-day-forcast');
+               for (let i = 0; i < 5; i++) {
+                  $(fiveDay[i]).html('');
+               }
+               for (let i = 0; i < 5; i++) {
+                  var dayForcast = response.daily[i];
+                  var div = $('<div>');
+                  $(fiveDay[i]).append('<p class="fivedy">' + ' (' + moment().add((i + 1).toString(),'days').format('MM/DD/YYYY') + ')' + '</p>');
+                  $(fiveDay[i]).append('<p class="fivedy">' + response.daily[i].weather[0].main + '</p>');
+                  $(fiveDay[i]).append('<p class="fivedy">' + response.daily[i].temp.day + '</p>');
+                  $(fiveDay[i]).append('<p class="fivedy">' + response.daily[i].humidity + '</p>');
+               }
+               
+            })
+      })     
+})
+  
 });

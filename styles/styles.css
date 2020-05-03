@@ -5,16 +5,22 @@
     /* margin: 0% 5% */
 }
 #current-forecast{
-    background-color: rgb(148, 172, 177);
+    /* background-color: rgb(148, 172, 177); */
+    border: 2px solid rgb(190, 200, 202);
     width: 812px;
     height: 257px;
 }
 #city-history{
-    background-color: rgb(18, 144, 167);
     width: 297px;
     height: 371px;
+    padding: 10px 0px 0px 0px;
+
 }
 
+#search-history{
+    background-color: rgb(190, 200, 202);
+
+}
 h1{
     widows: 100%;
     background-color: black;
@@ -26,7 +32,49 @@ h1{
 button{
     height: 20px;
 }
-.history-list{
+/* .history-list{
     list-style: none;
     border-bottom: 2px solid gray;
+} */
+
+.history-list{
+    list-style-type: none;
+    background-color: #FFF;
+    border-bottom: 3px solid rgb(31, 30, 30);
+    padding-left: 25px;
+}
+
+.five-day-forcast{
+    background-color: rgb(75, 77, 182);
+    margin: 0px 10px;
+}
+
+p{
+    padding-left: 25px;
+}
+h3{
+    padding-left: 25px;
+}
+button{
+    height: 30px;
+}
+.uvnum{
+    /* float: right; */
+    display: inline;
+    background-color: red;
+    color: #FFF;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.fivedy{
+    color:#FFF;
+}
+
+.five-day-head{
+    padding-left: 44px;
+}
+
+h1{
+    text-align: center;
 }

@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js" integrity="sha256-AdQN98MVZs44Eq2yTwtoKufhnU+uZ7v2kXnD5vqzZVo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <title>Weather Forecast</title>
 </head>
 <body>
@@ -17,33 +18,45 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-">
-                <div>
-                    <input type="text">
-                    <button></button>
+            <div class="col-" id="search-history">
+                <div id="searchDiv">
+                    <!-- <h2>Search for a city</h2> -->
+                    <input type="text" id='input'>
+                    <button type="button" class="btn btn-primary">Search</button>
                 </div>
 
-                <div id="city-history"></div>
+                <ul id="city-history"></ul>
             </div>
-        </div>
-        <div id="forecast">
-            <div class="row">
-                <div class="col-">
-                    <div id="current-forecast"></div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-">
+                        <div id="current-forecast">
+                            <h3 id="city"></h3>
+                            <p id="humidity"></p>
+                            <p id="temp"></p>
+                            <p id="wind-speed"></p>
+                            <p id="uv-index"></p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-">
-                    <div class="five-day-forcast"></div>
-                </div>
-                <div class="col-">
-                    <div class="five-day-forcast"></div>
-                </div>
-                <div class="col-">
-                    <div class="five-day-forcast"></div>
-                </div>
-                <div class="col-">
-                    <div class="five-day-forcast"></div>
+                <h2 class="five-day-head">5-day Forecast</h2>
+
+                <div class="row " id="forecast">
+                    <div class="col-">
+                        <div class="five-day-forcast" data-day='day1'></div>
+                    </div>
+                    <div class="col-">
+                        <div class="five-day-forcast" data-day='day2'></div>
+                    </div>
+                    <div class="col-">
+                        <div class="five-day-forcast" data-day='day3'></div>
+                    </div>
+                    <div class="col-">
+                        <div class="five-day-forcast" data-day='day4'></div>
+                    </div>
+                    <div class="col-">
+                        <div class="five-day-forcast" data-day='day5'></div>
+                    </div>
                 </div>
             </div>
         </div>
