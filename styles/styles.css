@@ -59,7 +59,6 @@ button{
     height: 30px;
 }
 .uvnum{
-    /* float: right; */
     display: inline;
     background-color: red;
     color: #FFF;

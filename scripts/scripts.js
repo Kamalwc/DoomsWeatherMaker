@@ -23,8 +23,7 @@ jQuery(document).ready(function () {
          historyLi.addClass('history-list');
          $('#city-history').append(historyLi);
       }
-      //  var storedHistory = localStorage.getItem('history'); 
-      //  console.log("length is :" + storedHistory.length);
+      
    }
 
    function storeHistory(){
