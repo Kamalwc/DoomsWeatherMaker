@@ -30,7 +30,7 @@ jQuery(document).ready(function () {
       localStorage.setItem("history", JSON.stringify(history))
    }
 
-   $('button').on('click', function () {
+   $('#search-button').on('click', function () {
       alert('Success');
       var city = $('#input').val();
       
