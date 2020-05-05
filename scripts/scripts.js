@@ -31,7 +31,6 @@ jQuery(document).ready(function () {
    }
 
    $('#search-button').on('click', function () {
-      alert('Success');
       var city = $('#input').val();
       
       if (city === "" ) {
