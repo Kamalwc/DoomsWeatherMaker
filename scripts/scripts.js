@@ -31,7 +31,7 @@ jQuery(document).ready(function () {
    }
 
    $('button').on('click', function () {
-      
+      alert('Success');
       var city = $('#input').val();
       
       if (city === "" ) {
