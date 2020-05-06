@@ -57,6 +57,7 @@ $(document).ready(function () {
          let url2 = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&appid=be96177b800465cf4bbda5bf5b09acca';
             $.ajax({
                url: url2,
+               responseType: "application/json",
                method: 'GET'
             }).then(function (response) {
                console.log("response " + response);
