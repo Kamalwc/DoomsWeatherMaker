@@ -4,11 +4,13 @@ $(document).ready(function () {
    init();
 
    function init(){
-      var storedHistory = localStorage.getItem('history');
+      var storedHistory = JSON.parse(localStorage.getItem('history'));
 
-      if (!localStorage.getItem('history')) {
-         history = storedHistory;
+      if (!storedHistory) {
+        storedHistory = [];
       }
+
+      history = storedHistory;
 
       renderHistory();
    }
